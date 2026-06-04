@@ -1,0 +1,86 @@
+﻿섹터A,섹터B,종목코드,종목명,시장구분,기존최고가달성일,기존최고가,당일종가,대비,등락률,종료일 거래량,종료일 거래금액(백만원),종료일 시가총액(억원)
+Consumer Discretionary,Homefurnishing Retail,WSM,"Williams-Sonoma, Inc.",s&p500,2026-06-03,207.11,207.91,0.80,0.39,"706,770",146.94,N/A
+Consumer Discretionary,"Hotels, Resorts & Cruise Lines",RCL,Royal Caribbean Group,s&p500,2026-06-02,289.30,293.41,6.99,2.44,"2,308,293",677.28,N/A
+Energy,Oil & Gas Equipment & Services,SLB,Schlumberger,s&p500,2026-05-26,57.68,58.01,1.16,2.04,"8,093,705",469.52,N/A
+Financials,Asset Management & Custody Banks,ARES,Ares Management,s&p500,2026-06-01,128.74,130.55,7.45,6.05,"1,800,930",235.11,N/A
+Financials,Asset Management & Custody Banks,BNY,BNY Mellon,s&p500,2026-06-01,142.59,144.27,3.70,2.64,"2,096,623",302.49,N/A
+Financials,Asset Management & Custody Banks,NTRS,Northern Trust,s&p500,2026-04-21,171.74,173.06,4.61,2.74,"740,829",128.21,N/A
+Financials,Asset Management & Custody Banks,STT,State Street Corporation,s&p500,2026-06-01,159.79,162.75,4.87,3.08,"1,275,891",207.65,N/A
+Financials,Asset Management & Custody Banks,TROW,T. Rowe Price,s&p500,2026-05-06,106.13,106.96,2.95,2.84,"1,509,328",161.44,N/A
+Financials,Diversified Banks,C,Citigroup,s&p500,2026-04-20,132.42,135.04,5.11,3.93,"9,586,282","1,294.48",N/A
+Financials,Investment Banking & Brokerage,GS,Goldman Sachs,s&p500,2026-06-02,"1,064.58","1,092.63",51.61,4.96,"1,914,990","2,092.38",N/A
+Financials,Investment Banking & Brokerage,MS,Morgan Stanley,s&p500,2026-06-02,214.98,218.30,8.16,3.88,"4,271,305",932.43,N/A
+Financials,Life & Health Insurance,PRU,Prudential Financial,s&p500,2026-05-21,102.84,103.41,2.62,2.6,"1,180,223",122.05,N/A
+Financials,Regional Banks,FITB,Fifth Third Bancorp,s&p500,2026-04-21,51.10,51.80,2.31,4.67,"9,604,815",497.53,N/A
+Financials,Regional Banks,MTB,M&T Bank,s&p500,2026-04-09,221.44,221.72,7.69,3.59,"620,912",137.67,N/A
+Financials,Regional Banks,RF,Regions Financial Corporation,s&p500,2026-04-30,28.28,28.44,1.05,3.81,"7,786,950",221.50,N/A
+Health Care,Biotechnology,INCY,Incyte,s&p500,2026-05-11,100.32,101.24,3.26,3.33,"1,749,308",177.10,N/A
+Health Care,Health Care Technology,SOLV,Solventum,s&p500,2026-06-03,78.36,82.43,4.07,5.2,"2,050,470",169.03,N/A
+Health Care,Life Sciences Tools & Services,A,Agilent Technologies,s&p500,2026-06-03,137.40,138.28,0.88,0.64,"1,640,957",226.92,N/A
+Health Care,Life Sciences Tools & Services,CRL,Charles River Laboratories,s&p500,2026-04-20,185.54,185.71,5.84,3.25,"588,759",109.34,N/A
+Health Care,Life Sciences Tools & Services,IQV,IQVIA,s&p500,2026-06-01,186.82,186.91,4.86,2.67,"1,412,511",264.01,N/A
+Health Care,Managed Health Care,CNC,Centene Corporation,s&p500,2026-06-01,62.00,62.69,3.15,5.28,"4,249,414",266.42,N/A
+Health Care,Managed Health Care,ELV,Elevance Health,s&p500,2026-06-01,402.66,410.06,18.79,4.8,"1,038,879",426.01,N/A
+Health Care,Managed Health Care,HUM,Humana,s&p500,2026-06-01,328.31,349.82,22.28,6.8,"1,564,334",547.24,N/A
+Industrials,Aerospace & Defense,GE,GE Aerospace,s&p500,2026-03-11,325.15,328.28,13.64,4.34,"3,267,248","1,072.57",N/A
+Industrials,Air Freight & Logistics,UPS,United Parcel Service,s&p500,2026-06-01,109.02,110.21,1.54,1.42,"4,501,921",496.16,N/A
+Industrials,Building Products,CARR,Carrier Global,s&p500,2026-05-06,67.90,68.58,1.00,1.48,"4,229,170",290.04,N/A
+Industrials,Building Products,JCI,Johnson Controls,s&p500,2026-06-03,146.96,147.38,0.42,0.29,"3,915,530",577.07,N/A
+Industrials,Cargo Ground Transportation,JBHT,J.B. Hunt,s&p500,2026-06-03,280.05,283.31,3.26,1.16,"476,212",134.92,N/A
+Industrials,Cargo Ground Transportation,ODFL,Old Dominion,s&p500,2026-06-03,236.06,245.52,9.46,4.01,"1,887,201",463.35,N/A
+Industrials,Construction Machinery & Heavy Transportation Equipment,CAT,Caterpillar Inc.,s&p500,2026-05-06,926.93,940.62,14.45,1.56,"2,153,136","2,025.29",N/A
+Industrials,Industrial Machinery & Supplies & Components,GWW,W. W. Grainger,s&p500,2026-06-03,"1,284.22","1,289.33",5.11,0.4,"168,590",217.37,N/A
+Industrials,Trading Companies & Distributors,URI,United Rentals,s&p500,2026-06-03,"1,056.58","1,084.44",27.86,2.64,"484,590",525.51,N/A
+Information Technology,Communications Equipment,CSCO,Cisco,s&p500,2026-06-02,128.00,130.00,3.50,2.77,"21,229,296","2,759.81",N/A
+Information Technology,Semiconductor Materials & Equipment,AMAT,Applied Materials,s&p500,2026-06-03,500.77,502.13,1.36,0.27,"5,111,660","2,566.72",N/A
+Information Technology,Semiconductor Materials & Equipment,KLAC,KLA Corporation,s&p500,2026-06-03,"2,125.11","2,131.10",5.99,0.28,"779,248","1,660.66",N/A
+Information Technology,Systems Software,FTNT,Fortinet,s&p500,2026-06-02,148.86,149.67,3.19,2.18,"4,749,092",710.80,N/A
+Materials,Paper & Plastic Packaging Products & Materials,SW,Smurfit Westrock,s&p500,2026-06-02,42.24,42.30,0.18,0.43,"2,923,773",123.68,N/A
+Materials,Steel,NUE,Nucor,s&p500,2026-06-02,258.46,262.30,4.57,1.77,"953,253",250.04,N/A
+Materials,Steel,STLD,Steel Dynamics,s&p500,2026-06-03,275.13,276.85,1.72,0.63,"682,597",188.98,N/A
+Real Estate,Hotel & Resort REITs,HST,Host Hotels & Resorts,s&p500,2026-06-03,23.85,24.45,0.60,2.52,"5,265,033",128.73,N/A
+Real Estate,Multi-Family Residential REITs,AVB,AvalonBay Communities,s&p500,2026-05-11,187.27,188.91,5.72,3.12,"932,883",176.23,N/A
+Real Estate,Multi-Family Residential REITs,CPT,Camden Property Trust,s&p500,2026-06-03,108.89,111.83,2.94,2.7,"968,003",108.25,N/A
+Real Estate,Multi-Family Residential REITs,EQR,Equity Residential,s&p500,2026-05-27,66.63,67.89,1.75,2.65,"2,091,709",142.02,N/A
+Real Estate,Multi-Family Residential REITs,ESS,Essex Property Trust,s&p500,2026-06-03,277.79,284.55,6.76,2.44,"343,857",97.85,N/A
+Real Estate,Multi-Family Residential REITs,MAA,Mid-America Apartment Communities,s&p500,2026-06-03,132.54,136.91,4.37,3.3,"1,092,682",149.60,N/A
+Real Estate,Multi-Family Residential REITs,UDR,"UDR, Inc.",s&p500,2026-05-26,38.03,38.90,1.29,3.43,"4,086,131",158.95,N/A
+Real Estate,Office REITs,ARE,Alexandria Real Estate Equities,s&p500,2026-06-02,52.74,52.96,1.69,3.3,"1,442,865",76.41,N/A
+Real Estate,Office REITs,BXP,"BXP, Inc.",s&p500,2026-06-02,61.21,61.99,1.09,1.8,"1,018,829",63.16,N/A
+Real Estate,Single-Family Residential REITs,INVH,Invitation Homes,s&p500,2026-05-27,29.41,29.49,0.51,1.74,"2,642,848",77.92,N/A
+Real Estate,Telecom Tower REITs,AMT,American Tower,s&p500,2026-06-01,187.53,194.46,12.22,6.71,"2,491,366",484.47,N/A
+Real Estate,Telecom Tower REITs,CCI,Crown Castle,s&p500,2026-05-20,92.64,93.94,5.32,6.01,"4,962,405",466.19,N/A
+가구 제조업,"사무용가구,금속가구 도매,제조",071950,코아스,kospi,2026-03-12,"2,350","2,560",465,22.2,"390,745","1,000",318
+고무제품 제조업,타이어 제조,161390,한국타이어앤테크놀로지,kospi,2026-06-02,"69,800","71,800","2,000",2.87,"600,479","43,114","88,942"
+기타 금융업,-,105560,KB금융,kospi,2026-05-08,"161,700","164,200","7,600",4.85,"2,143,129","351,901","612,220"
+기타 금융업,금융지주회사,055550,신한지주,kospi,2026-04-29,"100,000","100,100","3,700",3.84,"2,050,259","205,230","475,129"
+기타 금융업,지주회사,402340,SK스퀘어,kospi,2026-06-02,"1,346,000","1,361,000","15,000",1.11,"858,305","1,168,153","1,795,953"
+기타 전문 도매업,"도소매, 건설, 남자용 정장 제조업 등",028260,삼성물산,kospi,2026-06-02,"485,500","535,000","49,500",10.2,"1,331,923","712,578","867,596"
+기타 전문 도매업,"도소매, 건설, 남자용 정장 제조업 등",02826K,삼성물산우B,kospi,2026-05-11,"265,000","265,000","13,500",5.37,"26,331","6,977","3,889"
+기타 전문 도매업,"정보통신 유통, 자동차 관리, 글로벌 트레이딩, 호텔&리조트",001740,SK네트웍스,kospi,2026-06-02,"12,840","13,010",170,1.32,"27,739,479","360,890","26,097"
+보험업,생명보험상품,085620,미래에셋생명,kospi,2026-03-18,"18,280","19,410","2,210",12.85,"1,592,402","30,908","26,238"
+보험업,"손해보험의 원수,재보험,운용자산의 투자활동",000810,삼성화재,kospi,2026-06-02,"641,000","730,000","89,000",13.88,"443,786","323,963","325,926"
+보험업,"손해보험의 원수,재보험,운용자산의 투자활동",000815,삼성화재우,kospi,2026-05-22,"393,000","411,500","25,000",6.47,"91,000","37,446","12,373"
+소프트웨어 개발 및 공급업,모바일게임,192080,더블유게임즈,kospi,2026-05-28,"70,000","70,300",400,0.57,"86,233","6,062","14,884"
+자동차 신품 부품 제조업,"자동차부품(트란스밋숀,프런트액슬,기어,전동축),변속동력전달장치,특수공구,농기계 및 산업기계부품 제조,무역",092200,디아이씨,kospi,2026-06-02,"9,600","10,260",660,6.88,"3,356,418","34,436","3,989"
+전자부품 제조업,"인쇄회로기판,Module 제조/부동산(건물) 임대",007810,코리아써키트,kospi,2026-06-01,"119,600","122,300","13,300",12.2,"561,042","68,615","29,330"
+종합 소매업,백화점,069960,현대백화점,kospi,2026-05-14,"125,000","139,800","18,000",14.78,"556,045","77,735","30,147"
+종합 소매업,"백화점,할인점(E마트)",004170,신세계,kospi,2026-05-21,"576,574","659,000","90,000",15.82,"163,545","107,776","62,243"
+특수 목적용 기계 제조업,LP CVD,036930,주성엔지니어링,kosdaq global,2026-05-26,"234,500","250,500","53,600",27.22,"6,828,007","1,710,415","116,435"
+금융 지원 서비스업,기업인수목적 주식회사,472230,에스케이증권제11호스팩,kosdaq,2026-03-11,"2,070","2,070",0,0.0,840,1,86
+금융 지원 서비스업,기업인수합병,464440,한국제13호스팩,kosdaq,2026-06-01,"2,115","2,115",8,0.38,"70,893",149,91
+금융 지원 서비스업,기업인수합병,464680,KB제27호스팩,kosdaq,2026-05-29,"2,110","2,110",0,0.0,"248,457",524,272
+금융 지원 서비스업,기업인수합병,469880,하나30호스팩,kosdaq,2026-05-27,"2,100","2,105",5,0.24,"3,990",8,153
+기계장비 및 관련 물품 도매업,"반도체(메모리,비메모리), CPU, TFT-LCD, 네트웍 장비, PC 및 주변기기, 이동통신수탁사업",031330,에스에이엠티,kosdaq,2026-05-18,"18,590","18,860","2,590",15.92,"3,795,803","71,588","18,859"
+기초 의약물질 제조업,닥터쥬크르,007390,네이처셀,kosdaq,2026-05-28,"32,300","34,550","3,800",12.36,"2,004,213","69,245","22,262"
+기타 금융업,리스수입,021880,메이슨캐피탈,kosdaq,2026-05-26,287,680,526,341.56,"1,630,874","1,108","1,442"
+봉제의복 제조업,"캐쥬얼의류(Thursday Island, TI FOR MEN)",065060,지엔코,kosdaq,2026-06-01,"3,450","3,480",130,3.88,"64,506",224,208
+"영화, 비디오물, 방송프로그램 제작 및 배급업",VFX,476080,M83,kosdaq,2026-04-16,"7,220","7,760","1,790",29.98,"255,867","1,985",626
+의약품 제조업,"인체조직(피부, 뼈, 연골)",290650,엘앤씨바이오,kosdaq,2026-03-10,"82,800","84,000","5,200",6.6,"692,171","58,142","22,654"
+자동차 신품 부품 제조업,"마이크로비트,샤프트",085910,네오티스,kosdaq,2026-05-14,"32,000","33,750","5,150",18.01,"370,234","12,495","4,703"
+"컴퓨터 프로그래밍, 시스템 통합 및 관리업","시스템통합, 지능형교통시스템",040350,크레오에스지,kosdaq,2026-06-02,"6,150","7,350","1,200",19.51,"560,257","4,117","1,434"
+통신 및 방송 장비 제조업,RF 부품 및 중계기,032500,케이엠더블유,kosdaq,2026-05-22,"36,400","38,200","3,200",9.14,"1,799,136","68,726","16,117"
+특수 목적용 기계 제조업,300mm Poly Etch System,089970,브이엠,kosdaq,2026-05-26,"66,200","69,500","15,300",28.23,"1,227,101","85,283","17,216"
+특수 목적용 기계 제조업,반도체장비(화학증착장비),095610,테스,kosdaq,2026-05-22,"129,000","135,900","31,300",29.92,"678,768","92,244","26,310"
+특수 목적용 기계 제조업,실리콘질화막증착용LP-CVD,084370,유진테크,kosdaq,2026-05-11,"150,300","155,700","35,900",29.97,"543,116","84,563","35,680"
+특수 목적용 기계 제조업,"카메라모듈 검사장비, 반도체 검사장비",271830,팸텍,kosdaq,2026-06-02,"1,816","2,360",544,29.96,"18,005,281","42,492",695
