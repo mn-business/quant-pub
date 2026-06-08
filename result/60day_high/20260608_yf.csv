@@ -1,5 +1,4 @@
 ﻿섹터A,섹터B,종목코드,종목명,시장구분,기존최고가달성일,기존최고가,당일종가,대비,등락률,종료일 거래량,종료일 거래금액(백만원),종료일 시가총액(억원)
-반도체,57101010,285A,Kioxia Holdings Corp,tse,2026-06-03,"78,080","78,140","1,220",1.59,"36,522,900","2,853,899",N/A
 Communication Services,Publishing,NWSA,News Corp (Class A),s&p500,2026-05-07,27.04,27.26,0.42,1.56,"3,632,700",99.03,N/A
 Consumer Discretionary,"Hotels, Resorts & Cruise Lines",HLT,Hilton Worldwide,s&p500,2026-04-20,342.73,343.10,4.95,1.46,"1,291,700",443.18,N/A
 Consumer Discretionary,"Hotels, Resorts & Cruise Lines",MAR,Marriott International,s&p500,2026-05-27,385.86,392.51,7.21,1.87,"1,974,700",775.09,N/A
