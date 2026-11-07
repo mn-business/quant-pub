@@ -59,75 +59,72 @@
   function buildColumns(preset: string) {
     const isSingleDate = screener.dateFilterMode === 'single';
 
-    const cols: any[] = [];
-
-    // 1. Record Date (Frozen, hidden if single date)
-    if (!isSingleDate || preset === 'all') {
-      cols.push({
+    return [
+      // 1. Record Date (Frozen, hidden if single date)
+      {
         title: '기록일',
         field: 'recordDate',
         width: 95,
         frozen: true,
+        visible: (!isSingleDate || preset === 'all') && screener.isColumnVisible('recordDate'),
         sorter: 'string',
         headerFilter: 'input',
         formatter: (cell: any) => `<span class="font-mono text-gray-300 text-[11px]">${cell.getValue() || ''}</span>`
-      });
-    }
-
-    // 2. Market (Frozen)
-    cols.push({
-      title: '시장',
-      field: 'market',
-      width: 85,
-      frozen: true,
-      sorter: 'string',
-      headerFilter: 'list',
-      headerFilterParams: { valuesLookup: 'all', clearable: true },
-      formatter: (cell: any) => {
-        const m = cell.getValue();
-        return `<span class="inline-flex items-center gap-1 font-medium text-[11px]"><span class="text-xs">${getMarketFlag(m)}</span><span class="text-gray-300 uppercase">${m}</span></span>`;
-      }
-    });
-
-    // 3. Code / Ticker (Frozen)
-    cols.push({
-      title: '종목코드',
-      field: 'code',
-      width: 95,
-      frozen: true,
-      sorter: 'alphanum',
-      headerFilter: 'input',
-      formatter: (cell: any) => {
-        const row = cell.getRow().getData();
-        const code = cell.getValue();
-        const links = getChartLinks(row.market, code);
-        return `
-          <div class="flex items-center justify-between group">
-            <span class="font-mono font-bold text-blue-400 group-hover:underline cursor-pointer">${code}</span>
-            <a href="${links.tradingView}" target="_blank" rel="noopener noreferrer" title="TradingView 차트 보기" class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-white ml-1 text-[10px]">↗</a>
-          </div>
-        `;
-      }
-    });
-
-    // 4. Name (Frozen)
-    cols.push({
-      title: '종목명',
-      field: 'name',
-      width: 140,
-      frozen: true,
-      sorter: 'string',
-      headerFilter: 'input',
-      formatter: (cell: any) => `<span class="font-semibold text-gray-100 hover:text-blue-400 transition cursor-pointer truncate block" title="${cell.getValue()}">${cell.getValue()}</span>`
-    });
-
-    // 5. Appear Count (in multi-date range)
-    if (!isSingleDate) {
-      cols.push({
+      },
+      // 2. Market (Frozen)
+      {
+        title: '시장',
+        field: 'market',
+        width: 85,
+        frozen: true,
+        visible: screener.isColumnVisible('market'),
+        sorter: 'string',
+        headerFilter: 'list',
+        headerFilterParams: { valuesLookup: 'all', clearable: true },
+        formatter: (cell: any) => {
+          const m = cell.getValue();
+          return `<span class="inline-flex items-center gap-1 font-medium text-[11px]"><span class="text-xs">${getMarketFlag(m)}</span><span class="text-gray-300 uppercase">${m}</span></span>`;
+        }
+      },
+      // 3. Code / Ticker (Frozen)
+      {
+        title: '종목코드',
+        field: 'code',
+        width: 95,
+        frozen: true,
+        visible: screener.isColumnVisible('code'),
+        sorter: 'alphanum',
+        headerFilter: 'input',
+        formatter: (cell: any) => {
+          const row = cell.getRow().getData();
+          const code = cell.getValue();
+          const links = getChartLinks(row.market, code);
+          return `
+            <div class="flex items-center justify-between group">
+              <span class="font-mono font-bold text-blue-400 group-hover:underline cursor-pointer">${code}</span>
+              <a href="${links.tradingView}" target="_blank" rel="noopener noreferrer" title="TradingView 차트 보기" class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-white ml-1 text-[10px]">↗</a>
+            </div>
+          `;
+        }
+      },
+      // 4. Name (Frozen)
+      {
+        title: '종목명',
+        field: 'name',
+        width: 140,
+        frozen: true,
+        visible: screener.isColumnVisible('name'),
+        sorter: 'string',
+        headerFilter: 'input',
+        formatter: (cell: any) => `<span class="font-semibold text-gray-100 hover:text-blue-400 transition cursor-pointer truncate block" title="${cell.getValue()}">${cell.getValue()}</span>`
+      },
+      // 5. Appear Count (in multi-date range)
+      {
         title: '기간출현',
         field: 'appearCount',
         width: 75,
         hozAlign: 'center',
+        visible: !isSingleDate && screener.isColumnVisible('appearCount'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
@@ -137,70 +134,64 @@
           const bg = val >= 3 ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : val === 2 ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' : 'bg-gray-800 text-gray-400 border-gray-700';
           return `<span class="px-1.5 py-0.2 rounded border text-[10px] font-mono font-bold ${bg}">${val}회</span>`;
         }
-      });
-    }
-
-    // 6. Sector A (Major)
-    if (preset !== 'compact') {
-      cols.push({
+      },
+      // 6. Sector A (Major)
+      {
         title: '섹터A (대분류)',
         field: 'sectorA',
         width: 130,
+        visible: screener.isColumnVisible('sectorA'),
         sorter: 'string',
         headerFilter: 'input',
         formatter: (cell: any) => `<span class="text-gray-300 text-[11px] truncate block" title="${cell.getValue() || ''}">${cell.getValue() || '-'}</span>`
-      });
-    }
-
-    // 7. Sector B (Sub)
-    if (preset === 'all') {
-      cols.push({
+      },
+      // 7. Sector B (Sub)
+      {
         title: '섹터B (소분류)',
         field: 'sectorB',
         width: 130,
+        visible: screener.isColumnVisible('sectorB'),
         sorter: 'string',
         headerFilter: 'input',
         formatter: (cell: any) => `<span class="text-gray-400 text-[11px] truncate block" title="${cell.getValue() || ''}">${cell.getValue() || '-'}</span>`
-      });
-    }
-
-    // 8. Close price
-    cols.push({
-      title: '당일종가',
-      field: 'close',
-      width: 90,
-      hozAlign: 'right',
-      sorter: 'number',
-      sorterParams: { alignEmptyValues: 'bottom' },
-      headerFilter: 'input',
-      headerFilterFunc: customNumberFilter,
-      formatter: (cell: any) => `<span class="font-mono text-gray-100 tabular-nums">${formatNumber(cell.getValue())}</span>`
-    });
-
-    // 9. Change % (등락률)
-    cols.push({
-      title: '등락률',
-      field: 'changePct',
-      width: 85,
-      hozAlign: 'right',
-      sorter: 'number',
-      sorterParams: { alignEmptyValues: 'bottom' },
-      headerFilter: 'input',
-      headerFilterFunc: customNumberFilter,
-      formatter: (cell: any) => {
-        const val = cell.getValue();
-        const colorClass = getChangeColorClass(val, screener.colorScheme);
-        return `<span class="font-mono font-bold tabular-nums ${colorClass}">${formatPercent(val)}</span>`;
-      }
-    });
-
-    // 10. Breakout % (돌파 강도)
-    if (preset === 'all' || preset === 'momentum') {
-      cols.push({
+      },
+      // 8. Close price
+      {
+        title: '당일종가',
+        field: 'close',
+        width: 90,
+        hozAlign: 'right',
+        visible: screener.isColumnVisible('close'),
+        sorter: 'number',
+        sorterParams: { alignEmptyValues: 'bottom' },
+        headerFilter: 'input',
+        headerFilterFunc: customNumberFilter,
+        formatter: (cell: any) => `<span class="font-mono text-gray-100 tabular-nums">${formatNumber(cell.getValue())}</span>`
+      },
+      // 9. Change %
+      {
+        title: '등락률',
+        field: 'changePct',
+        width: 85,
+        hozAlign: 'right',
+        visible: screener.isColumnVisible('changePct'),
+        sorter: 'number',
+        sorterParams: { alignEmptyValues: 'bottom' },
+        headerFilter: 'input',
+        headerFilterFunc: customNumberFilter,
+        formatter: (cell: any) => {
+          const val = cell.getValue();
+          const colorClass = getChangeColorClass(val, screener.colorScheme);
+          return `<span class="font-mono font-bold tabular-nums ${colorClass}">${formatPercent(val)}</span>`;
+        }
+      },
+      // 10. Breakout %
+      {
         title: '돌파강도',
         field: 'breakoutPct',
         width: 85,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('breakoutPct'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
@@ -210,87 +201,85 @@
           if (val === null || val === undefined) return '-';
           return `<span class="font-mono text-emerald-400 font-semibold tabular-nums">+${val.toFixed(2)}%</span>`;
         }
-      });
-    }
-
-    // 11. Days Since Prev High (전고점 경과일)
-    cols.push({
-      title: '전고점경과',
-      field: 'daysSincePrevHigh',
-      width: 90,
-      hozAlign: 'center',
-      sorter: 'number',
-      sorterParams: { alignEmptyValues: 'bottom' },
-      headerFilter: 'input',
-      headerFilterFunc: customNumberFilter,
-      formatter: (cell: any) => {
-        const val = cell.getValue();
-        if (val === null || val === undefined) return '-';
-        if (val <= 3) {
-          return `<span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px] font-bold">연속 (${val}일)</span>`;
-        } else if (val >= 30) {
-          return `<span class="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[10px]">돌파 (${val}일)</span>`;
+      },
+      // 11. Days Since Prev High
+      {
+        title: '전고점경과',
+        field: 'daysSincePrevHigh',
+        width: 90,
+        hozAlign: 'center',
+        visible: screener.isColumnVisible('daysSincePrevHigh'),
+        sorter: 'number',
+        sorterParams: { alignEmptyValues: 'bottom' },
+        headerFilter: 'input',
+        headerFilterFunc: customNumberFilter,
+        formatter: (cell: any) => {
+          const val = cell.getValue();
+          if (val === null || val === undefined) return '-';
+          if (val <= 3) {
+            return `<span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px] font-bold">연속 (${val}일)</span>`;
+          } else if (val >= 30) {
+            return `<span class="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[10px]">돌파 (${val}일)</span>`;
+          }
+          return `<span class="font-mono text-gray-300 text-[11px]">${val}일</span>`;
         }
-        return `<span class="font-mono text-gray-300 text-[11px]">${val}일</span>`;
-      }
-    });
-
-    // 12. Prev High Date & Prev High
-    if (preset === 'all' || preset === 'price') {
-      cols.push({
+      },
+      // 12. Prev High Date
+      {
         title: '기존최고일',
         field: 'prevHighDate',
         width: 95,
+        visible: screener.isColumnVisible('prevHighDate'),
         sorter: 'string',
         headerFilter: 'input',
         formatter: (cell: any) => `<span class="font-mono text-gray-400 text-[11px]">${cell.getValue() || '-'}</span>`
-      });
-      cols.push({
+      },
+      // 13. Prev High Price
+      {
         title: '기존최고가',
         field: 'prevHigh',
         width: 90,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('prevHigh'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
         headerFilterFunc: customNumberFilter,
         formatter: (cell: any) => `<span class="font-mono text-gray-300 tabular-nums">${formatNumber(cell.getValue())}</span>`
-      });
-    }
-
-    // 13. High & Low of Day
-    if (preset === 'all' || preset === 'price') {
-      cols.push({
+      },
+      // 14. High
+      {
         title: '당일고가',
         field: 'high',
         width: 85,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('high'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
         headerFilterFunc: customNumberFilter,
         formatter: (cell: any) => `<span class="font-mono text-gray-300 tabular-nums">${formatNumber(cell.getValue())}</span>`
-      });
-      cols.push({
+      },
+      // 15. Low
+      {
         title: '당일저가',
         field: 'low',
         width: 85,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('low'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
         headerFilterFunc: customNumberFilter,
         formatter: (cell: any) => `<span class="font-mono text-gray-300 tabular-nums">${formatNumber(cell.getValue())}</span>`
-      });
-    }
-
-    // 14. 1-Week Return
-    if (preset === 'all' || preset === 'momentum') {
-      cols.push({
+      },
+      // 16. 1-Week Return
+      {
         title: '1주상승률',
         field: 'return1w',
         width: 85,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('return1w'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
@@ -300,16 +289,14 @@
           if (val === null || val === undefined) return '<span class="text-gray-500">-</span>';
           return `<span class="font-mono font-medium tabular-nums ${getChangeColorClass(val, screener.colorScheme)}">${formatPercent(val)}</span>`;
         }
-      });
-    }
-
-    // 15. 3-Month Return
-    if (preset === 'all' || preset === 'momentum') {
-      cols.push({
+      },
+      // 17. 3-Month Return
+      {
         title: '3개월상승률',
         field: 'return3m',
         width: 90,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('return3m'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
@@ -319,42 +306,40 @@
           if (val === null || val === undefined) return '<span class="text-gray-500">-</span>';
           return `<span class="font-mono font-bold tabular-nums ${getChangeColorClass(val, screener.colorScheme)}">${formatPercent(val)}</span>`;
         }
-      });
-    }
-
-    // 16. Volume & Trading Value
-    if (preset !== 'compact') {
-      cols.push({
+      },
+      // 18. Volume
+      {
         title: '거래량',
         field: 'volume',
         width: 95,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('volume'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
         headerFilterFunc: customNumberFilter,
         formatter: (cell: any) => `<span class="font-mono text-gray-300 tabular-nums">${formatNumber(cell.getValue())}</span>`
-      });
-      cols.push({
+      },
+      // 19. Trading Value
+      {
         title: '거래대금(백만)',
         field: 'tradingValue',
         width: 100,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('tradingValue'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
         headerFilterFunc: customNumberFilter,
         formatter: (cell: any) => `<span class="font-mono text-amber-300 tabular-nums">${formatNumber(cell.getValue())}</span>`
-      });
-    }
-
-    // 17. Market Cap
-    if (preset === 'all' || preset === 'price') {
-      cols.push({
+      },
+      // 20. Market Cap
+      {
         title: '시가총액(억)',
         field: 'marketCap',
         width: 95,
         hozAlign: 'right',
+        visible: screener.isColumnVisible('marketCap'),
         sorter: 'number',
         sorterParams: { alignEmptyValues: 'bottom' },
         headerFilter: 'input',
@@ -364,10 +349,8 @@
           if (val === null || val === undefined) return '<span class="text-gray-500">N/A</span>';
           return `<span class="font-mono text-gray-300 tabular-nums">${formatNumber(val)}</span>`;
         }
-      });
-    }
-
-    return cols;
+      }
+    ];
   }
 
   onMount(async () => {
@@ -438,11 +421,12 @@
     }
   });
 
-  // Effect: Update columns when preset or dateMode changes
+  // Effect: Update columns when preset, visibleColumns, dateMode, or colorScheme changes
   $effect(() => {
     const preset = screener.columnPreset;
     const mode = screener.dateFilterMode;
     const scheme = screener.colorScheme;
+    const vis = screener.visibleColumns; // Reactive tracking for column toggle
     if (tabulatorInstance && isMounted) {
       tabulatorInstance.setColumns(buildColumns(preset));
     }

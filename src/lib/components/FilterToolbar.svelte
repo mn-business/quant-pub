@@ -43,6 +43,84 @@
     screener.dateFilterMode = mode;
     screener.ensureDataForTarget();
   }
+  function handlePresetClick(presetId: string) {
+    screener.columnPreset = presetId as any;
+    if (presetId === 'all') {
+      screener.showAllColumns();
+    } else if (presetId === 'momentum') {
+      const active: Record<string, boolean> = {
+        recordDate: true,
+        market: true,
+        code: true,
+        name: true,
+        appearCount: true,
+        sectorA: true,
+        sectorB: false,
+        close: true,
+        changePct: true,
+        breakoutPct: true,
+        daysSincePrevHigh: true,
+        prevHighDate: false,
+        prevHigh: false,
+        high: false,
+        low: false,
+        return1w: true,
+        return3m: true,
+        volume: false,
+        tradingValue: true,
+        marketCap: false
+      };
+      screener.visibleColumns = active;
+    } else if (presetId === 'price') {
+      const active: Record<string, boolean> = {
+        recordDate: false,
+        market: true,
+        code: true,
+        name: true,
+        appearCount: false,
+        sectorA: true,
+        sectorB: false,
+        close: true,
+        changePct: true,
+        breakoutPct: false,
+        daysSincePrevHigh: false,
+        prevHighDate: true,
+        prevHigh: true,
+        high: true,
+        low: true,
+        return1w: false,
+        return3m: false,
+        volume: true,
+        tradingValue: true,
+        marketCap: true
+      };
+      screener.visibleColumns = active;
+    } else if (presetId === 'compact') {
+      const active: Record<string, boolean> = {
+        recordDate: false,
+        market: true,
+        code: true,
+        name: true,
+        appearCount: false,
+        sectorA: false,
+        sectorB: false,
+        close: true,
+        changePct: true,
+        breakoutPct: true,
+        daysSincePrevHigh: true,
+        prevHighDate: false,
+        prevHigh: false,
+        high: false,
+        low: false,
+        return1w: false,
+        return3m: false,
+        volume: true,
+        tradingValue: false,
+        marketCap: false
+      };
+      screener.visibleColumns = active;
+    }
+  }
 </script>
 
 <div class="bg-[#181c27] border-b border-[#2a2e39] p-3 space-y-2.5">
@@ -156,19 +234,29 @@
       </div>
     </div>
 
-    <!-- Right Controls: View Presets, Grouping, CSV Export -->
+    <!-- Right Controls: View Presets, Grouping, Column Settings, CSV Export -->
     <div class="flex items-center gap-2 flex-wrap">
       <!-- Column Preset -->
       <div class="hidden lg:flex items-center bg-[#131722] border border-[#2a2e39] rounded p-0.5">
         {#each columnPresets as p}
           <button
-            onclick={() => screener.columnPreset = p.id as any}
+            onclick={() => handlePresetClick(p.id)}
             class="px-2 py-0.5 rounded text-[11px] transition {screener.columnPreset === p.id ? 'bg-[#2a2e39] text-white font-medium' : 'text-gray-400 hover:text-gray-200'}"
           >
             {p.label}
           </button>
         {/each}
       </div>
+
+      <!-- Column Settings Modal Toggle Button -->
+      <button
+        onclick={() => screener.isColumnModalOpen = true}
+        class="px-2.5 py-1 rounded bg-[#131722] hover:bg-[#2a2e39] border border-[#2a2e39] text-gray-300 hover:text-white font-medium flex items-center gap-1.5 transition text-xs shadow-xs"
+        title="표시할 컬럼 보이기/숨기기 설정"
+      >
+        <span>⚙️</span>
+        <span>컬럼 설정</span>
+      </button>
 
       <!-- GroupBy -->
       <div class="flex items-center gap-1">

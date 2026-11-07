@@ -54,6 +54,13 @@ export interface Manifest {
   categories: CategoryMeta[];
 }
 
+export interface ColumnMeta {
+  field: string;
+  label: string;
+  defaultVisible: boolean;
+  required?: boolean;
+}
+
 export type DateFilterMode = 'single' | 'range' | 'month';
 export type ColumnPreset = 'all' | 'momentum' | 'price' | 'compact';
 export type ColorScheme = 'kr' | 'us'; // KR: red=up, blue=down; US: green=up, red=down

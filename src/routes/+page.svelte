@@ -7,6 +7,7 @@
   import SummaryBar from '$lib/components/SummaryBar.svelte';
   import TabulatorGrid from '$lib/components/TabulatorGrid.svelte';
   import StockDrawer from '$lib/components/StockDrawer.svelte';
+  import ColumnSettingsModal from '$lib/components/ColumnSettingsModal.svelte';
 
   let gridRef: TabulatorGrid | undefined = $state();
 
@@ -45,4 +46,7 @@
 
   <!-- Stock Detail & Timeline Drawer -->
   <StockDrawer />
+
+  <!-- Column Visibility Settings Modal -->
+  <ColumnSettingsModal />
 </div>

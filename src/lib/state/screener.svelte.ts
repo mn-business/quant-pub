@@ -1,5 +1,36 @@
 import { base } from '$app/paths';
-import type { Manifest, CategoryMeta, StockRecord, MacroRecord, DateFilterMode, ColumnPreset, ColorScheme } from '$lib/types/screener';
+import type { Manifest, CategoryMeta, StockRecord, MacroRecord, DateFilterMode, ColumnPreset, ColorScheme, ColumnMeta } from '$lib/types/screener';
+
+export const ALL_COLUMNS: ColumnMeta[] = [
+  { field: 'recordDate', label: '기록일', defaultVisible: true },
+  { field: 'market', label: '시장', defaultVisible: true, required: true },
+  { field: 'code', label: '종목코드', defaultVisible: true, required: true },
+  { field: 'name', label: '종목명', defaultVisible: true, required: true },
+  { field: 'appearCount', label: '기간출현횟수', defaultVisible: true },
+  { field: 'sectorA', label: '섹터A (대분류)', defaultVisible: true },
+  { field: 'sectorB', label: '섹터B (소분류)', defaultVisible: true },
+  { field: 'close', label: '당일종가', defaultVisible: true },
+  { field: 'changePct', label: '등락률(%)', defaultVisible: true },
+  { field: 'breakoutPct', label: '돌파강도(%)', defaultVisible: true },
+  { field: 'daysSincePrevHigh', label: '전고점경과일', defaultVisible: true },
+  { field: 'prevHighDate', label: '기존최고일', defaultVisible: true },
+  { field: 'prevHigh', label: '기존최고가', defaultVisible: true },
+  { field: 'high', label: '당일고가', defaultVisible: true },
+  { field: 'low', label: '당일저가', defaultVisible: true },
+  { field: 'return1w', label: '1주상승률(%)', defaultVisible: true },
+  { field: 'return3m', label: '3개월상승률(%)', defaultVisible: true },
+  { field: 'volume', label: '거래량', defaultVisible: true },
+  { field: 'tradingValue', label: '거래대금(백만)', defaultVisible: true },
+  { field: 'marketCap', label: '시가총액(억)', defaultVisible: true }
+];
+
+function getDefaultVisibility(): Record<string, boolean> {
+  const map: Record<string, boolean> = {};
+  for (const c of ALL_COLUMNS) {
+    map[c.field] = c.defaultVisible;
+  }
+  return map;
+}
 
 export class ScreenerState {
   manifest = $state<Manifest | null>(null);
@@ -17,6 +48,9 @@ export class ScreenerState {
   columnPreset = $state<ColumnPreset>('all');
   groupBy = $state<string | null>(null);
   colorScheme = $state<ColorScheme>('kr');
+
+  visibleColumns = $state<Record<string, boolean>>(getDefaultVisibility());
+  isColumnModalOpen = $state<boolean>(false);
 
   selectedStock = $state<StockRecord | null>(null);
   isDrawerOpen = $state<boolean>(false);
@@ -232,6 +266,7 @@ export class ScreenerState {
   // Initialize and load manifest
   async init() {
     try {
+      this.loadColumnPreferences();
       this.isLoading = true;
       const res = await fetch(`${base}/data/manifest.json`);
       if (!res.ok) throw new Error(`Failed to load manifest: ${res.statusText}`);
@@ -388,6 +423,60 @@ export class ScreenerState {
 
   closeStockDetail() {
     this.isDrawerOpen = false;
+  }
+
+  // Column Visibility Controls
+  toggleColumn(field: string) {
+    const col = ALL_COLUMNS.find(c => c.field === field);
+    if (col?.required) return; // 필수 컬럼은 숨김 방지
+
+    const current = this.visibleColumns[field] !== false;
+    this.visibleColumns = {
+      ...this.visibleColumns,
+      [field]: !current
+    };
+    this.saveColumnPreferences();
+  }
+
+  isColumnVisible(field: string): boolean {
+    if (this.visibleColumns[field] !== undefined) {
+      return this.visibleColumns[field];
+    }
+    const col = ALL_COLUMNS.find(c => c.field === field);
+    return col ? col.defaultVisible : true;
+  }
+
+  showAllColumns() {
+    const map: Record<string, boolean> = {};
+    for (const c of ALL_COLUMNS) {
+      map[c.field] = true;
+    }
+    this.visibleColumns = map;
+    this.saveColumnPreferences();
+  }
+
+  resetColumns() {
+    this.visibleColumns = getDefaultVisibility();
+    this.saveColumnPreferences();
+  }
+
+  private saveColumnPreferences() {
+    if (typeof localStorage !== 'undefined') {
+      try {
+        localStorage.setItem('quant_screener_columns', JSON.stringify(this.visibleColumns));
+      } catch {}
+    }
+  }
+
+  loadColumnPreferences() {
+    if (typeof localStorage !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('quant_screener_columns');
+        if (saved) {
+          this.visibleColumns = { ...getDefaultVisibility(), ...JSON.parse(saved) };
+        }
+      } catch {}
+    }
   }
 }
 
