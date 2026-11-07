@@ -25,7 +25,7 @@
   <title>글로벌 60일 신고가 퀀트 스크리너 | quant-pub</title>
 </svelte:head>
 
-<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<div class="flex-1 flex flex-col h-full min-h-0 overflow-hidden">
   <!-- Top Navigation & Category Bar -->
   <HeaderNav />
 
@@ -38,8 +38,8 @@
   <!-- Summary Statistics Bar -->
   <SummaryBar />
 
-  <!-- Main Tabulator Grid (Flexible Full Height) -->
-  <main class="flex-1 overflow-hidden relative p-2 bg-[#0f1117]">
+  <!-- Main Tabulator Grid (Flexible Full Height with Internal Scroll) -->
+  <main class="flex-1 min-h-0 relative p-2 bg-[#0f1117] flex flex-col overflow-hidden">
     <TabulatorGrid bind:this={gridRef} />
   </main>
 

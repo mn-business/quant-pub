@@ -32,6 +32,10 @@
 
 /* Tabulator TradingView Custom Theme Overrides */
 .tabulator {
+  height: 100% !important;
+  max-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
   border: 1px solid #2a2e39 !important;
   background-color: #131722 !important;
   color: #d1d4dc !important;
@@ -40,10 +44,18 @@
 }
 
 .tabulator .tabulator-header {
+  flex-shrink: 0 !important;
   border-bottom: 2px solid #2a2e39 !important;
   background-color: #1e222d !important;
   color: #787b86 !important;
   font-weight: 600 !important;
+}
+
+.tabulator .tabulator-tableholder {
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: auto !important;
 }
 
 .tabulator .tabulator-header .tabulator-col {

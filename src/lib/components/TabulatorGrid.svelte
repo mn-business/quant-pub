@@ -411,7 +411,19 @@
 
     isMounted = true;
 
+    // ResizeObserver to keep Tabulator virtual scroll height synced with container
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && tableContainer) {
+      ro = new ResizeObserver(() => {
+        if (tabulatorInstance) {
+          tabulatorInstance.redraw(true);
+        }
+      });
+      ro.observe(tableContainer);
+    }
+
     return () => {
+      if (ro) ro.disconnect();
       if (tabulatorInstance) {
         tabulatorInstance.destroy();
       }
@@ -527,4 +539,4 @@
   }
 </script>
 
-<div class="w-full h-full flex-1 min-h-[500px] overflow-hidden" bind:this={tableContainer}></div>
+<div class="w-full h-full flex-1 min-h-0 overflow-hidden" bind:this={tableContainer}></div>
