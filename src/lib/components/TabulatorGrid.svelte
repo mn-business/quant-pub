@@ -444,12 +444,86 @@
     }
   });
 
-  // Export CSV function exposed to parent
+  // Export CSV with UTF-8 BOM (\uFEFF) for perfect Excel compatibility
   export function exportCsv() {
-    if (tabulatorInstance) {
-      const dateStr = screener.dateFilterMode === 'single' ? screener.selectedDate : 'quant-screener';
-      tabulatorInstance.download('csv', `60day_high_${dateStr}.csv`);
+    const rows = screener.activeRows;
+    if (!rows || rows.length === 0) {
+      alert('내보낼 데이터가 없습니다.');
+      return;
     }
+
+    const headers = [
+      '기록일',
+      '시장',
+      '종목코드',
+      '종목명',
+      '기간출현횟수',
+      '섹터A(대분류)',
+      '섹터B(소분류)',
+      '당일종가',
+      '등락률(%)',
+      '돌파강도(%)',
+      '전고점경과일',
+      '기존최고가달성일',
+      '기존최고가',
+      '당일최고가',
+      '당일최저가',
+      '1주상승률(%)',
+      '3개월상승률(%)',
+      '거래량',
+      '거래대금(백만원)',
+      '시가총액(억원)'
+    ];
+
+    const escapeCsv = (val: any) => {
+      if (val === null || val === undefined) return '';
+      const str = String(val);
+      if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    };
+
+    const lines = [headers.join(',')];
+
+    for (const r of rows) {
+      const line = [
+        escapeCsv(r.recordDate),
+        escapeCsv(r.market),
+        escapeCsv(r.code),
+        escapeCsv(r.name),
+        escapeCsv(r.appearCount || 1),
+        escapeCsv(r.sectorA),
+        escapeCsv(r.sectorB),
+        escapeCsv(r.close),
+        escapeCsv(r.changePct),
+        escapeCsv(r.breakoutPct),
+        escapeCsv(r.daysSincePrevHigh),
+        escapeCsv(r.prevHighDate),
+        escapeCsv(r.prevHigh),
+        escapeCsv(r.high),
+        escapeCsv(r.low),
+        escapeCsv(r.return1w),
+        escapeCsv(r.return3m),
+        escapeCsv(r.volume),
+        escapeCsv(r.tradingValue),
+        escapeCsv(r.marketCap)
+      ];
+      lines.push(line.join(','));
+    }
+
+    // Prefix with UTF-8 BOM (\uFEFF) so Excel recognizes Korean UTF-8 encoding automatically
+    const csvContent = '\uFEFF' + lines.join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const dateStr = screener.dateFilterMode === 'single' ? screener.selectedDate : 'quant-screener';
+    a.download = `60day_high_${dateStr}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 </script>
 
