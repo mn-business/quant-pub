@@ -1,0 +1,202 @@
+@import 'tabulator-tables/dist/css/tabulator_midnight.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased font-sans text-sm;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #131722;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2e39;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #363c4e;
+}
+
+/* Tabulator TradingView Custom Theme Overrides */
+.tabulator {
+  border: 1px solid #2a2e39 !important;
+  background-color: #131722 !important;
+  color: #d1d4dc !important;
+  font-size: 12px !important;
+  font-family: inherit !important;
+}
+
+.tabulator .tabulator-header {
+  border-bottom: 2px solid #2a2e39 !important;
+  background-color: #1e222d !important;
+  color: #787b86 !important;
+  font-weight: 600 !important;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+  border-right: 1px solid #2a2e39 !important;
+  background-color: #1e222d !important;
+}
+
+.tabulator .tabulator-header .tabulator-col:hover {
+  background-color: #262b3d !important;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+  padding: 6px 8px !important;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-title {
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tabulator .tabulator-header .tabulator-col input,
+.tabulator .tabulator-header .tabulator-col select {
+  background-color: #131722 !important;
+  color: #d1d4dc !important;
+  border: 1px solid #2a2e39 !important;
+  border-radius: 3px !important;
+  padding: 2px 4px !important;
+  font-size: 11px !important;
+  margin-top: 4px !important;
+  outline: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.tabulator .tabulator-header .tabulator-col input:focus,
+.tabulator .tabulator-header .tabulator-col select:focus {
+  border-color: #2962ff !important;
+}
+
+.tabulator .tabulator-tableholder .tabulator-table {
+  background-color: #131722 !important;
+  color: #d1d4dc !important;
+}
+
+.tabulator .tabulator-row {
+  background-color: #131722 !important;
+  border-bottom: 1px solid #1e222d !important;
+}
+
+.tabulator .tabulator-row.tabulator-row-even {
+  background-color: #161a25 !important;
+}
+
+.tabulator .tabulator-row:hover {
+  background-color: #1e2638 !important;
+  cursor: pointer;
+}
+
+.tabulator .tabulator-row .tabulator-cell {
+  border-right: 1px solid #1e222d !important;
+  padding: 5px 8px !important;
+  box-sizing: border-box !important;
+}
+
+/* Frozen column styling & shadow effect */
+.tabulator .tabulator-cell.tabulator-frozen {
+  background-color: #131722 !important;
+  border-right: 1px solid #2a2e39 !important;
+}
+.tabulator .tabulator-row.tabulator-row-even .tabulator-cell.tabulator-frozen {
+  background-color: #161a25 !important;
+}
+.tabulator .tabulator-row:hover .tabulator-cell.tabulator-frozen {
+  background-color: #1e2638 !important;
+}
+
+/* Group row header */
+.tabulator .tabulator-row.tabulator-group {
+  background-color: #1e222d !important;
+  border-top: 1px solid #2a2e39 !important;
+  border-bottom: 1px solid #2a2e39 !important;
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  padding: 4px 10px !important;
+}
+
+/* Footer / Calc row */
+.tabulator .tabulator-footer {
+  border-top: 2px solid #2a2e39 !important;
+  background-color: #1e222d !important;
+  color: #d1d4dc !important;
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+}
+
+/* Light Mode Overrides when html does not have .dark */
+html:not(.dark) body {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+html:not(.dark) .tabulator {
+  border-color: #e2e8f0 !important;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+html:not(.dark) .tabulator .tabulator-header {
+  border-bottom-color: #cbd5e1 !important;
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+}
+
+html:not(.dark) .tabulator .tabulator-header .tabulator-col {
+  border-right-color: #e2e8f0 !important;
+  background-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .tabulator .tabulator-header .tabulator-col input,
+html:not(.dark) .tabulator .tabulator-header .tabulator-col select {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .tabulator .tabulator-row {
+  background-color: #ffffff !important;
+  border-bottom-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .tabulator .tabulator-row.tabulator-row-even {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) .tabulator .tabulator-row:hover {
+  background-color: #eff6ff !important;
+}
+
+html:not(.dark) .tabulator .tabulator-cell.tabulator-frozen {
+  background-color: #ffffff !important;
+  border-right-color: #cbd5e1 !important;
+}
+html:not(.dark) .tabulator .tabulator-row.tabulator-row-even .tabulator-cell.tabulator-frozen {
+  background-color: #f8fafc !important;
+}
+html:not(.dark) .tabulator .tabulator-row:hover .tabulator-cell.tabulator-frozen {
+  background-color: #eff6ff !important;
+}
+
+html:not(.dark) .tabulator .tabulator-row.tabulator-group {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0284c7 !important;
+}
